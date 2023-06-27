@@ -1,0 +1,76 @@
+.Navbar{
+   
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-bottom:  2px solid lightgray;
+    font-size: 14px;
+    color: gray;
+    .wrapper{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .search{
+            display: flex;
+            align-items: center;
+            border:  1px solid lightgray;
+            input{
+                border: none;
+                outline: none;
+                background:transparent;
+
+
+                &::placeholder{
+                    font-size: 12px;
+                }
+            }
+
+        }
+
+        .itmes{
+            
+            display: flex;
+            align-items: center;
+            .item{
+                position: relative;
+                margin-right: 20px;
+                display: flex;
+                align-items: center;
+                .icon{
+                    font-size: 20px;
+                }
+
+                img{
+                    width: 30px;
+                    height: 30px;
+                    border-radius:50% ;
+                    object-fit: contain;
+                    border:  1px solid lightgray;
+                }
+
+                .counter{ 
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 15px;
+                    height: 15px;
+                    color: white;
+                    background-color: red;
+                    border-radius: 50%;
+                    font-size: 10px;
+                    font-weight: bold;
+                    position: absolute;
+                    top:-5px;
+                    right: -5px;
+
+                }
+
+
+            }
+
+        }
+    }
+    
+}
