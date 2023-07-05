@@ -10,12 +10,12 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase";
+import { auth, db, storage, database } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
-const New = ({ inputs, title }) => {
+const NewProduct = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -86,31 +86,16 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    console.log("clicked");
+    console.log("clicked add product");
 
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-
-      //another methods
-      // const userData = {
-      //   ...data, // Collect all the form input data
-      //   timeStamp: serverTimestamp(), // Add a timestamp field
-      // };
-
-      //its a promise that why asyac/await
-      await setDoc(doc(db, "users", res.user.uid), {
+      const productsCollectionRef = collection(db, "products");
+      await addDoc(productsCollectionRef, {
         ...data,
         timeStamp: serverTimestamp(),
       });
-
-      //after submit the data navigate to the previsous page !
       navigate(-1);
-
-      console.log(res);
+      console.log(productsCollectionRef);
     } catch (err) {
       console.log(err);
     }
@@ -176,4 +161,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default NewProduct;

@@ -4,7 +4,9 @@ import DarkModeReducer from "./darkModeReducer";
 const INITIAL_STATE = {
   darkMode: false,
 };
+
 export const DarkModeContext = createContext(INITIAL_STATE);
+
 export const DarkModeContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(DarkModeReducer, INITIAL_STATE);
 
@@ -15,4 +17,4 @@ export const DarkModeContextProvider = ({ children }) => {
   );
 };
 
-//childer is basic our application
+//children is basic our application

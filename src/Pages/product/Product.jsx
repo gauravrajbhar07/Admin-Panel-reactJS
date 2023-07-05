@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./Datatable.scss";
-import { userColumns, userRows } from "../../dataSource";
+import "./product.scss";
+import { ProductColumns, userRows } from "../../dataSource";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase";
@@ -12,7 +12,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-const Datatable = () => {
+const Product = () => {
   const [data, setData] = useState([]); //empty array in the beginning
 
   //fetching Data
@@ -44,7 +44,7 @@ const Datatable = () => {
     //fetching Data in real time
 
     const unsub = onSnapshot(
-      collection(db, "users"),
+      collection(db, "products"),
       (snapShot) => {
         let list = [];
 
@@ -69,7 +69,7 @@ const Datatable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "users", id));
+      await deleteDoc(doc(db, "products", id));
       //fiter is used for some visual representation
       setData(data.filter((item) => item.id !== id));
     } catch (error) {
@@ -87,7 +87,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/product/test" style={{ textDecoration: "none" }}>
               <div className="ViewButton">View</div>
             </Link>
 
@@ -106,19 +106,19 @@ const Datatable = () => {
   return (
     <div className="Datatable">
       <div className="datatableTitle">
-        Add New User
+        Add New Product
         <Link
-          to="/users/new"
+          to="/products/new"
           style={{ textDecoration: "none" }}
           className="Link"
         >
-          ADD NEW
+          ADD NEW PRODUCT
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumns)}
+        columns={ProductColumns.concat(actionColumns)}
         pageSize={9}
         rowsPerPageOption={[9]}
         checkboxSelection
@@ -127,4 +127,4 @@ const Datatable = () => {
   );
 };
 
-export default Datatable;
+export default Product;

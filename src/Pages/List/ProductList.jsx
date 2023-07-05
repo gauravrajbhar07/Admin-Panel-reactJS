@@ -5,16 +5,17 @@ import "./list.scss";
 import Datatable from "../../Components/DataTable/Datatable";
 import NavBar from "../../Components/NavBar/NavBar";
 import { collection, getDocs } from "firebase/firestore";
-const List = () => {
+import Product from "../product/Product";
+const ProductList = () => {
   return (
     <div className="list">
       <SideBar />
       <div className="listContainer">
         <NavBar />
-        <Datatable />
+        <Product />
       </div>
     </div>
   );
 };
 
-export default List;
+export default ProductList;
